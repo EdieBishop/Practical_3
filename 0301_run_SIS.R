@@ -1,7 +1,7 @@
 #' ---
-#' title: "Using the step_simple_birth_death function from another file"
+#' title: "Simulating disease transmission using differing transmission rates"
 #' author: "Edie Bishop"
-#' date: "8th of November 2019"
+#' date: "13th of November 2019"
 #' output: html_document
 #' ---
 
@@ -21,6 +21,7 @@ source("0301_step_SIS.R")
 
 #' ### Load packages
 library(kableExtra) # Allows us to build tables in the html report 
+library(knitr)
 
 #' ### Define parameters 
 
@@ -128,6 +129,9 @@ plot_populations(herd.df.d, col = c("green", "red"))
 #' **Figure 4** Plot of E.coli outbreak where the green line representst susceptible cattle and the red line 
 #' infected cattle, assuming a transmission rate of 4/3 and a recovery rate of 1/3, over 50 weeks. 
 
-
+table.df <- data.frame("Transmission.rates" = c(ecoli.transmission.a, ecoli.transmission.b, ecoli.transmission.c, ecoli.transmission.d),
+                       "Ro" = c("Transmission.rates" / (1/3)), 
+                       "Equilibrium.susceptibility" = 
+                       
 
 

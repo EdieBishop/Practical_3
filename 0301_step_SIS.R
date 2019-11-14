@@ -1,17 +1,14 @@
 #' ---
-#' title: "Function to model population growth, taking imto account both birth and death rates"
+#' title: "Function to model disease transmission"
 #' author: "Edie Bishop"
-#' date: "8th of November 2019"
+#' date: "13th of November 2019"
 #' output: html_document
 #' ---
 
 #' File: 0301_step_SIS.r
 #' =========================
 #' 
-#' We are now going to update our function so that rather than just taking one parameter, growth.rate, 
-#' which will determine population change, we can now give the model two parameters, birth.rate and 
-#' death.rate.   
-
+#' 
 #' ### Function: step_deterministic_birth_death()
 #' 
 #' 
@@ -29,20 +26,25 @@
 
 step_deterministic_SIS <- function(latest, transmission.rate, recovery.rate)
 {
+  # define the total population 
   total.pop <- latest$SUSCEPTIBLE + latest$INFECTED
-  
+  # define transition.rate.step, as this equation is used to calculate the number of infected and 
+  # the number of susceptible we can define it once here rather than having to define it twice 
   transmission.rate.step <- (transmission.rate * latest$SUSCEPTIBLE * latest$INFECTED)/total.pop
-  
+  # define recovery.rate.step, as this equation is also used in calculating both the change is 
+  # susceptibles and infecteds
   recovery.rate.step <- recovery.rate * latest$INFECTED
-  
+  # calculate the next value in the SUSCEPTIBLE varibale based on the previous value
   next.num.susceptible <- latest$SUSCEPTIBLE - transmission.rate.step + recovery.rate.step
-  
+  # calculate the next value in the INFECTED varaible based on the previous value 
   next.num.infected <- latest$INFECTED + transmission.rate.step - recovery.rate.step
-  
+  # create a dataframe which is only used within the function, which contains the latest value 
+  # for SUSCEPTIBLE and INFECTED variables 
   data.frame(SUSCEPTIBLES = next.num.susceptible, INFECTED = next.num.infected)
 }
 
-
+#' Now we will check that our function name is unique, and also tell R that we do not want to generate 
+#' a report unless our function name passes this test. 
 
 library(codetools)
 globals <- findGlobals(step_deterministic_SIS, merge = FALSE)$variables

@@ -44,7 +44,7 @@ herd.df.c <- data.frame(SUSCEPTIBLES = initial.susceptible,
 #' run the simulation using one week timesteps, followed by one day, then three weeks then five weeks. 
 timestep.a <- 1/7
 timestep.b <- 3
-timestep.c <- 5
+timestep.c <- 8
 
 #' Then we define the transmission rate and the recovery rate for E. coli infection. We will model four different 
 #' transmission rates, and assume the same recovery rate in each simulation. 
@@ -112,7 +112,7 @@ herd.df.b$time <- c(start.time, timesteps.b)
 #'
 #'----------------------------------------------------------------------------------------------------
 #'
-#' We do the same again, using timestep.c = 5, which will mean we model the tranmission in five-weekly timesteps
+#' We do the same again, using timestep.c = 8, which will mean we model the tranmission in five-weekly timesteps
 timesteps.c <- seq(from = start.time + timestep.c, to = end.time, by = timestep.c)
 for(new.time in timesteps.c) {
   updated.population <- step_deterministic_SIS(latest=tail(herd.df.c, 1),
@@ -129,9 +129,18 @@ plot_populations(herd.df.b, new.graph = FALSE, col = c("seagreen3", "orangered")
 plot_populations(herd.df.c, new.graph = FALSE, col = c("seagreen", "red3"))
 
 #' **Fig 1.** Change is number of suscetible cattle and cattle infected with *Escherichia coli* over 
-#' 30 weeks, modelled with timesteps of one day, one week, three weeks and five weeks from lightest 
+#' 30 weeks, modelled with timesteps of one day, one week, three weeks and eight weeks from lightest 
 #' to darkest lines respectively. 
+#'
 
-
-
+#' ## Conclusion
+#' We can see from the figure that the difference between the lines where we modelled the population daily 
+#' vs at weekly intervals is not very different, although there is some difference so the daily timestep model
+#' is more accurate. Given that the difference is so small, it is unlikely that reducing our timesteps to 
+#' less than one day would be worthwhile, given the limited increase in accuracy and significant increase in 
+#' computing power. However, we can see that at three weeks vs one week the line start to look rather different, 
+#' however depending on the application three week timesteps may still be acceptable. However, when we model 
+#' the outbreak using eight-week timesteps we find that we no longer produce a graph that is representative 
+#' of the result. In coclusion, between one-week and three-week timesteps seem to be appropriate given that it is reasonable to 
+#' expect that we may want to model this population over an exteneded period of time. 
 

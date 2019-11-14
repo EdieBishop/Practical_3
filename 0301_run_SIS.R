@@ -116,10 +116,17 @@ herd.df.d$time <- c(start.time, timesteps)
 
 #' Then we can use our plot_population function to plot the herdn.df dataframe. 
 plot_populations(herd.df.a, col = c("green", "red"))
-#' **Figure 1** 
+#' **Figure 1** Plot of E.coli outbreak where the green line representst susceptible cattle and the red line 
+#' infected cattle, assuming a transmission rate of 1/2 and a recovery rate of 1/3, over 50 weeks. 
 plot_populations(herd.df.b, col = c("green", "red"))
+#' **Figure 2** Plot of E.coli outbreak where the green line representst susceptible cattle and the red line 
+#' infected cattle, assuming a transmission rate of 2/3 and a recovery rate of 1/3, over 50 weeks. 
 plot_populations(herd.df.c, col = c("green", "red"))
+#' **Figure 3** Plot of E.coli outbreak where the green line representst susceptible cattle and the red line 
+#' infected cattle, assuming a transmission rate of 1 and a recovery rate of 1/3, over 50 weeks. 
 plot_populations(herd.df.d, col = c("green", "red"))
+#' **Figure 4** Plot of E.coli outbreak where the green line representst susceptible cattle and the red line 
+#' infected cattle, assuming a transmission rate of 4/3 and a recovery rate of 1/3, over 50 weeks. 
 
 
 

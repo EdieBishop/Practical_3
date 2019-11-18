@@ -22,7 +22,7 @@
 #' 
 #' Returns: 
 #' 
-#' - the updated population of susceptible and infected individuals as a dataframe 
+#' - the updated population of susceptible, infected and recovered individuals and time as a dataframe 
 #' 
 
 timestep_deterministic_SIR <- function(latest, timestep, transmission.rate, recovery.rate)

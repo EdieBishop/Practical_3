@@ -8,13 +8,13 @@
 #' # Introduction 
 #' In this script we call on a new function (timestep_deterministic_SIR), which takes a value for 
 #' disease transmission rate, a value for recovery rate, and a value for timestep, and returns 
-#' a dataframe with four columns (usceptibles, infecteds, recovered and time). In this exercise we will be 
+#' a dataframe with four columns (susceptibles, infecteds, recovered and time). In this exercise we will be 
 #' modelling a foot and mouth disease (FMD) outbreak. Since this disease moves so quickly through herds, 
 #' we will model it in terms of farms affected, rather than individual cattle. The model can be represented 
 #' mathamatically by the following equation:  
 #' \[S(t + 1) = S(t) -  \beta * S(t) * I(t) / N \]
 #' \[I(t + 1) = I(t) +  \beta * S(t) * I(t) / N - \sigma * I(t)\]
-#' \[R(t + 1) = R(t) + \sigma * I(t)]
+#' \[R(t + 1) = R(t) + \sigma * I(t) \]
 #' *Where S = susceptible farms, I = infected farms, R = recovered farms, t = time,*
 #' *\(\beta\) = transmission rate & \(\sigma\) = recovery rate*
 #' 
@@ -48,7 +48,7 @@ FMD.recovery <- 1/2
 #' to run over. 
 start.time <- 0
 end.time <- 30
-timestep <- 1/5
+timestep <- 1/7
 
 #' Next we define our dataframes. We will have a separate dataframe to model the two different recovery rates. 
 #' Since we now have essentially three populations (susceptible, infected and recovered), we will need a 
@@ -99,7 +99,8 @@ farm.df.2 <- rbind(farm.df.2, updated.population)
 
 #' ### Plot the results
 #' We can now plot the results produced by the timestep_deterministic_SIR function. We would expect that 
-#' the outbreak with the lower transmission rate will have a slightly more prolonged timeframe.  
+#' the outbreak with the lower transmission rate will have a slightly more prolonged timeframe, and a lower 
+#' peak in infected population.  
 plot_populations(farm.df.1)
 #' **Fig 1.** Change in the number of susceptible, infected and recovered farms during a bovine FMD 
 #' outbreak, assuming an Ro of 4 (transmission rate = 2, recovery rate = 1/2). 
@@ -107,3 +108,14 @@ plot_populations(farm.df.1)
 plot_populations(farm.df.2)
 #' **Fig 1.** Change in the number of susceptible, infected and recovered farms during a bovine FMD 
 #' outbreak, assuming an Ro of 2 (transmission rate = 1, recovery rate = 1/2). 
+#' 
+#' ## Conclusion
+#' 
+#' As expected, in the lower transmission rate situation we see that the outbreak results in a lower peak 
+#' value for the total number of infected farms, and a longer timeframe over which the outbreak occurs. 
+#' In contrast to the previous 
+#' examples modelling E. coli outbreaks, where the transmission rate had an effect on the number of 
+#' susceptible and infected individuals at equilibrium, in this case, since recovery from infection provides
+#' immunity against subsequent infection, we see a lower peak number of infected farms, and the peak occuring 
+#' at a later timepoint with the lower transmission rate, followed by a population consisting entirely of
+#' resistant herds in both cases. 

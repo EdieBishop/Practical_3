@@ -148,12 +148,14 @@ plot_populations(herd.df.c, new.graph = FALSE, col = c("seagreen", "red3"), lty 
 #' We can see from the figure that the difference between the lines where we modelled the population daily 
 #' vs at weekly intervals is not very different, although there is some difference so the daily timestep model
 #' is more accurate. Given that the difference is so small, it is unlikely that reducing our timesteps to 
-#' less than one day would be worthwhile, given the limited increase in accuracy and significant increase in 
+#' less than one week would be worthwhile, given the limited increase in accuracy and significant increase in 
 #' computing power. However, we can see that at eight weeks the line no longer accvurately represents the 
 #' population as the timesteps are too large, then at 20-week timesteps the model no longer produces a line 
-#' that looks anything like what it should! In this case I would suggest that one week is probably an 
+#' that looks anything like what it should! 
+#' 
+#' In this case I would suggest that one week is probably an 
 #' appropriate timestep to choose, as we know there is already some loss of accuracy compared to daily, 
 #' however the lines look pretty similar. It may be appropriate to use a slightly longer timestep (something 
-#' less than 8 weeks), however we risk further reductions in accuracy for a likely minimal decrease in 
-#' computing power and time.  
+#' between one and eight weeks), however we risk further reductions in accuracy for a likely minimal 
+#' decrease in computing power and time.  
 

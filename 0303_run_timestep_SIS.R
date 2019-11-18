@@ -1,5 +1,5 @@
 #' ---
-#' title: "Useing our new function (timestep_deterministic_function)"
+#' title: "Useing our new function (timestep_deterministic_SIS)"
 #' author: "Edie Bishop"
 #' date: "13th of November 2019"
 #' output: html_document
@@ -38,14 +38,13 @@ num.cattle <- 100
 initial.infected <- 2
 initial.susceptible <- num.cattle - initial.infected 
 
-#' Then we define the transmission rate and the recovery rate for E. coli infection. 
 ecoli.transmission <- 2/3
 ecoli.recovery <- 1/3 
 
 #' Then we define the start time and the end time for our study, and the timesteps that we wish our model 
 #' to run over. 
 start.time <- 0
-end.time <- 30
+end.time <- 100
 timestep.a <- 1/7
 timestep.b <- 8
 
@@ -64,8 +63,7 @@ herd.df.b <- data.frame(SUSCEPTIBLES = initial.susceptible,
 #' ### Run the function 
 #' Now we loop through the time itself (starting at the second time step). The for() command creates the loop, 
 #' and then we call our function, step_deterministic_SIS(), which creates a new value for susceptiple and 
-#' infected cattle at each time step. We call the funtion four times, in order to model each of the different
-#' transmission rates. 
+#' infected cattle at each time step. 
 
 #' Define timesteps, which in this case will use the value timestep.a to specify what timesteps our model 
 #' will run over 
@@ -106,7 +104,7 @@ herd.df.b$time <- c(start.time, timesteps.b)
 plot_populations(herd.df.a, col = c("seagreen1", "indianred1"))
 plot_populations(herd.df.b, new.graph = FALSE, col = c("seagreen", "red3"))
 
-#' **Fig 1.** Change is number of suscetible cattle and cattle infected with *Escherichia coli*, 
+#' **Fig 1.** Change in number of suscetible cattle and cattle infected with *Escherichia coli*, 
 #' created using the step_deterministic_SIS() function, over 
 #' 30 weeks, modelled with timesteps of one day and eight weeks represented by lighter and darker
 #' lines respectively.
@@ -118,8 +116,9 @@ plot_populations(herd.df.b, new.graph = FALSE, col = c("seagreen", "red3"))
 #' We will now use our more complex function, timestep_deterministic_SIS, which accepts four 
 #' arguments: latest, timestep, transmission.rate and recovery.rate. 
 #' We need to define our new dataframes, this time contianing three columns: number of susceptible 
-#' cattle, number of infected cattle and time. Each dataframe will correspond to a differnt rate of 
-#' E. coli transmission. 
+#' cattle, number of infected cattle and time. We will use the same previously defined transmission and 
+#' recovery rates for E. coli. 
+
 herd.df.1 <- data.frame(SUSCEPTIBLES = initial.susceptible,
                         INFECTED = initial.infected,
                         time = start.time)
@@ -164,8 +163,9 @@ herd.df.2 <- rbind(herd.df.2, updated.population)
 }
 
 #' ### Plot the results
+#' 
 #' We can now plot the results produced by the timestep_deterministic_SIS function, and see that they are 
-#' similar to those produced above. 
+#' the same as those produced above. 
 plot_populations(herd.df.1, col = c("seagreen1", "indianred1"))
 plot_populations(herd.df.2, new.graph = FALSE, col = c("seagreen", "red3"))
 
@@ -173,3 +173,17 @@ plot_populations(herd.df.2, new.graph = FALSE, col = c("seagreen", "red3"))
 #' created using the timestep_deterministic_SIS() function, over 
 #' 30 weeks, modelled with timesteps of one day and eight weeks represented by lighter and darker
 #' lines respectively.
+#' 
+#' ## Conclusion 
+#' 
+#' The advantage of our new model is that we no longer need to to define a variable called "timesteps" prior 
+#' to running the model. We can now just decide what timestep we want to simulate the model with, define
+#' that variable, and pass it to the function. This will decrease the risk of making errors involved with 
+#' altering our transmission and recovery rates outside the function, as we know that the function can do this 
+#' itself and do it correctly. 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 

@@ -9,7 +9,7 @@
 #' =========================
 #' 
 #' 
-#' ### Function: step_deterministic_birth_death()
+#' ### Function: step_deterministic_SIS()
 #' 
 #' 
 #' Arguments: 

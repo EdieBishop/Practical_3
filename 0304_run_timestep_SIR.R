@@ -113,9 +113,8 @@ plot_populations(farm.df.2)
 #' 
 #' As expected, in the lower transmission rate situation we see that the outbreak results in a lower peak 
 #' value for the total number of infected farms, and a longer timeframe over which the outbreak occurs. 
-#' In contrast to the previous 
-#' examples modelling E. coli outbreaks, where the transmission rate had an effect on the number of 
-#' susceptible and infected individuals at equilibrium, in this case, since recovery from infection provides
-#' immunity against subsequent infection, we see a lower peak number of infected farms, and the peak occuring 
-#' at a later timepoint with the lower transmission rate, followed by a population consisting entirely of
-#' resistant herds in both cases. 
+#' We can see that, in comparison to the SIS model, in which we ended up with a stable number of infected 
+#' and susceptible animals at equilibrium, in this case, since recovery from infection offers immunity 
+#' to the herd, then we see that we end up with a very low number of infected animals once the infection 
+#' peak has passed. 
+

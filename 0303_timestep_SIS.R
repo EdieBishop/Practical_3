@@ -22,7 +22,7 @@
 #' 
 #' Returns: 
 #' 
-#' - the updated population of susceptible and infected individuals as a dataframe 
+#' - the updated population of susceptible and infected individuals and time as a dataframe 
 #' 
 
 timestep_deterministic_SIS <- function(latest, timestep, transmission.rate, recovery.rate)
@@ -54,7 +54,7 @@ timestep_deterministic_SIS <- function(latest, timestep, transmission.rate, reco
   
   # create a dataframe which is only used within the function, which contains the latest value 
   # for SUSCEPTIBLE, INFECTED and TIME variables 
-  data.frame(SUSCEPTIBLES = next.num.susceptible, INFECTED = next.num.infected, time = next.timestep)
+  data.frame(SUSCEPTIBLE = next.num.susceptible, INFECTED = next.num.infected, time = next.timestep)
 }
 
 #' Now we will check that our function name is unique, and also tell R that we do not want to generate 

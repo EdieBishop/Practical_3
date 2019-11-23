@@ -1,21 +1,21 @@
 #' ---
-#' title: "Function to model disease transmission using specified timesteps"
+#' title: "Function to create deterministic SIR model of disease outbreak"
 #' author: "Edie Bishop"
 #' date: "13th of November 2019"
 #' output: html_document
 #' ---
 
-#' File: 0303_timestep_SIS.r
+#' File: 0304_deterministic_SIR.r
 #' =========================
 #' 
 #' 
-#' ### Function: timestep_deterministic_SIS()
+#' ### Function: timestep_deterministic_SIR()
 #' 
 #' 
 #' Arguments: 
 #' 
 #' - latest -- a dataframe that contains a single row containing the latest population size for each of 
-#'             the component populations - in this case SUSCEPTIBLEs and INFECTEDs  
+#'             the component populations - in this case SUSCEPTIBLEs, INFECTEDs and RECOVEREDs 
 #' - transmission.rate -- transmission rate of the disease
 #' - recovery.rate -- recovery rate from the disease  
 #' - timestep -- the unit of time which we would like to model the population to 
@@ -33,7 +33,7 @@ timestep_deterministic_SIR <- function(latest, timestep, transmission.rate, reco
   effective.recovery <- recovery.rate * timestep
   
   # define the total population 
-  total.pop <- latest$SUSCEPTIBLE + latest$INFECTED 
+  total.pop <- latest$SUSCEPTIBLE + latest$INFECTED + latest$RECOVERED
   
   # define transition.rate.step, as this equation is used to calculate the number of infected and 
   # the number of susceptible we can define it once here rather than having to define it twice 
@@ -74,3 +74,4 @@ if(length(globals) != 0)
   stop("Function timestep_deterministic_SIR() may not use global varibale(s): ",
        globals)
 }
+
